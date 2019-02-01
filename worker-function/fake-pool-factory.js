@@ -3,16 +3,14 @@
 const { Worker } = require('worker_threads');
 
 /**
- * @param {string} filename
+ * @param {Object} workerOptions
  * @returns {Object}
  */
-module.exports = function (filename) {
+module.exports = function (workerOptions) {
     return {
         acquire() {
             return new Promise(function (resolve, reject) {
-                const worker = new Worker(require.resolve('./worker'), {
-                    workerData: filename
-                });
+                const worker = new Worker(require.resolve('./worker'), workerOptions);
 
                 worker.on('online', function () {
                     worker.removeAllListeners();

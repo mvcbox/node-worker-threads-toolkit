@@ -9,6 +9,7 @@ const fakePoolFactory = require('./fake-pool-factory');
  * @param {string} filename
  * @param {Object} options
  * @param {number} options.returnTimeout
+ * @param {Array} options.execArgv
  * @param {boolean} options.pool
  * @param {Object} options.poolOptions
  * @returns {Function}
@@ -16,6 +17,7 @@ const fakePoolFactory = require('./fake-pool-factory');
 module.exports = function (filename, options) {
     options = Object.assign({
         returnTimeout: 60000,
+        execArgv: [],
         pool: false,
         poolOptions: {
             min: 1,
@@ -23,7 +25,11 @@ module.exports = function (filename, options) {
         }
     }, options || {});
 
-    const pool = _function.pool = options.pool ? poolFactory(options.poolOptions, filename) : fakePoolFactory(filename);
+    const workerOptions = {
+        workerData: filename,
+        execArgv: options.execArgv
+    };
+    const pool = _function.pool = options.pool ? poolFactory(options.poolOptions, workerOptions) : fakePoolFactory(workerOptions);
 
     async function _function(...args) {
         const worker = await pool.acquire();
