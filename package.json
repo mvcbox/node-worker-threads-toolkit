@@ -1,0 +1,27 @@
+{
+  "name": "worker-threads-toolkit",
+  "version": "1.0.0",
+  "description": "Worker threads toolkit",
+  "main": "index.js",
+  "engines": {
+    "node": ">=10.5.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mvcbox/node-worker-threads-toolkit.git"
+  },
+  "keywords": [
+    "Worker",
+    "threads",
+    "toolkit"
+  ],
+  "author": "mvcbox.org@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mvcbox/node-worker-threads-toolkit/issues"
+  },
+  "homepage": "https://github.com/mvcbox/node-worker-threads-toolkit#readme"
+}
