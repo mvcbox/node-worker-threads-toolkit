@@ -37,13 +37,13 @@ module.exports = function (filename, options) {
             });
 
             worker.on('online', function () {
-                worker.postMessage(args);
-
                 worker.on('message', function (data) {
                     clearTimeout(timeoutId);
                     worker.removeAllListeners().terminate();
                     data.success ? resolve(data.payload) : reject(data.payload);
                 });
+
+                worker.postMessage(args);
             });
         });
     };
