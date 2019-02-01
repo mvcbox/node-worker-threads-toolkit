@@ -12,7 +12,7 @@ if (isMainThread) {
 
 const moduleFunction = require(filename);
 
-parentPort.once('message', async function (args) {
+parentPort.on('message', async function (args) {
     try {
         parentPort.postMessage({
             success: true,
