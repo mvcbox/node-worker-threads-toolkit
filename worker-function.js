@@ -5,6 +5,7 @@ const { Worker } = require('worker_threads');
 /**
  * @param {string} filename
  * @param {Object} options
+ * @param {number} options.returnTimeout
  * @returns {Function}
  */
 module.exports = function (filename, options) {
