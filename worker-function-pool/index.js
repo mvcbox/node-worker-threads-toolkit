@@ -19,9 +19,9 @@ module.exports = function (filename, options) {
         }
     }, options || {});
 
-    const pool = poolFactory(options.poolOptions, filename);
+    const pool = _function.pool = poolFactory(options.poolOptions, filename);
 
-    return async function (...args) {
+    async function _function(...args) {
         const worker = await pool.acquire();
 
         return new Promise(function(resolve, reject) {
@@ -54,5 +54,7 @@ module.exports = function (filename, options) {
 
             worker.postMessage(args);
         });
-    };
+    }
+
+    return _function;
 };
