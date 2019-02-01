@@ -1,5 +1,6 @@
 'use strict';
 
+const os = require('os');
 const { Worker } = require('worker_threads');
 const poolFactory = require('./pool-factory');
 
@@ -15,7 +16,7 @@ module.exports = function (filename, options) {
         returnTimeout: 60000,
         poolOptions: {
             min: 1,
-            max: 5
+            max: os.cpus().length
         }
     }, options || {});
 
