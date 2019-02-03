@@ -2,17 +2,18 @@
 
 module.exports = `'use strict';
 
+const vm = require('vm');
 const {
     parentPort,
     isMainThread,
-    workerData: filename
+    workerData
 } = require('worker_threads');
 
 if (isMainThread) {
     process.exit();
 }
 
-const moduleFunction = require(filename);
+const moduleFunction = workerData.eval ? srcToFunction(workerData.source) : require(workerData.source);
 
 parentPort.on('message', async function (args) {
     try {
@@ -30,4 +31,9 @@ parentPort.on('message', async function (args) {
             }
         });
     }
-});`;
+});
+
+function srcToFunction(source) {
+    source = \`((exports, require, module, __filename, __dirname)=>{return \$\{source\}\\n});\`;
+    return (new vm.Script(source)).runInThisContext()(exports, require, module, __filename, __dirname);
+}`;
