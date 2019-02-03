@@ -1,7 +1,6 @@
 'use strict';
 
 const os = require('os');
-const { Worker } = require('worker_threads');
 const poolFactory = require('./pool-factory');
 const fakePoolFactory = require('./fake-pool-factory');
 
