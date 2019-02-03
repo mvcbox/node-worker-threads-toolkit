@@ -11,7 +11,7 @@ const WORKER_TEMPLATE = require('./worker-template');
  */
 module.exports = function (options, workerOptions) {
     return createPool({
-        create: function() {
+        create() {
             return new Promise(function (resolve, reject) {
                 const worker = new Worker(WORKER_TEMPLATE, workerOptions);
 
@@ -24,8 +24,12 @@ module.exports = function (options, workerOptions) {
             });
         },
 
-        destroy: function(worker) {
+        destroy(worker) {
             worker.terminate();
+        },
+
+        validate(worker) {
+            return worker && -1 !== worker.threadId;
         }
     }, options);
 };

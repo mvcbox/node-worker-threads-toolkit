@@ -22,7 +22,8 @@ module.exports = function (source, options) {
         pool: false,
         poolOptions: {
             min: 1,
-            max: os.cpus().length
+            max: os.cpus().length,
+            testOnBorrow: true
         }
     }, options || {});
 
