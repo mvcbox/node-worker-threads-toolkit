@@ -26,6 +26,7 @@ module.exports = function (filename, options) {
     }, options || {});
 
     const workerOptions = {
+        eval: true,
         workerData: filename,
         execArgv: options.execArgv
     };

@@ -1,6 +1,7 @@
 'use strict';
 
 const { Worker } = require('worker_threads');
+const WORKER_TEMPLATE = require('./worker-template');
 
 /**
  * @param {Object} workerOptions
@@ -10,7 +11,7 @@ module.exports = function (workerOptions) {
     return {
         acquire() {
             return new Promise(function (resolve, reject) {
-                const worker = new Worker(require.resolve('./worker'), workerOptions);
+                const worker = new Worker(WORKER_TEMPLATE, workerOptions);
 
                 worker.on('online', function () {
                     worker.removeAllListeners();

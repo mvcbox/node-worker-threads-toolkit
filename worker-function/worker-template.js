@@ -1,5 +1,7 @@
 'use strict';
 
+module.exports = `'use strict';
+
 const {
     parentPort,
     isMainThread,
@@ -28,4 +30,4 @@ parentPort.on('message', async function (args) {
             }
         });
     }
-});
+});`;
