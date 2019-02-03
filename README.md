@@ -7,6 +7,8 @@
 npm install worker-threads-toolkit
 ```
 
+### `workerFunction` - Execution of a function in a separate thread
+
 ### workerFunction args:
 - `source`: Function or path to the module that exports the function (Function/String)
 - `options`: Options when creating a function (Object):
